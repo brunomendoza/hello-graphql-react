@@ -1,19 +1,10 @@
-import { gql, useMutation, useQuery } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import React, { useRef } from 'react'
+import { getOwnersQuery } from '../../queries/queries'
 import Loading from '../Loading/Loading'
 import './petform.style.css'
 
 function PetForm () {
-  const getOwnersQuery = gql`
-  {
-    owners {
-      _id
-      firstName
-      lastName
-    }
-  }
-  `
-
   const { loading, error, data } = useQuery(getOwnersQuery)
 
   const nameInputElem = useRef(null)
@@ -49,6 +40,7 @@ function PetForm () {
         <div className="control-group">
           <label htmlFor="owners">Owners</label>
           <select id="owners" name="owners">
+            <option defaultValue>Select owner</option>
             { data.owners.map(owner => <option key={ owner._id } value={ owner._id }>{ owner.firstName } { owner.lastName }</option>)}
           </select>
         </div>

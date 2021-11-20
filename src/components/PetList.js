@@ -1,20 +1,10 @@
 import React from 'react'
 import {
-  gql,
   useQuery
 } from '@apollo/client'
 
 import Loading from './Loading/Loading'
-
-const getPetsQuery = gql`
-  {
-    pets {
-      _id
-      name
-      genre
-    }
-  }
-`
+import { getPetsQuery } from '../queries/queries'
 
 function PetList () {
   const { loading, error, data } = useQuery(getPetsQuery)
