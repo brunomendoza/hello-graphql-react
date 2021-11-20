@@ -1,8 +1,10 @@
 import React from 'react'
 import {
   gql,
-  useQuery,
+  useQuery
 } from '@apollo/client'
+
+import Loading from './Loading/Loading'
 
 const getPetsQuery = gql`
   {
@@ -17,11 +19,10 @@ const getPetsQuery = gql`
 function PetList () {
   const { loading, error, data } = useQuery(getPetsQuery)
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <Loading />
   if (error) return <p>Error :(</p>
 
   console.log(data.pets)
-
   return (
     <div>
       <ul id="pet-list">
