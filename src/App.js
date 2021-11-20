@@ -6,6 +6,7 @@ import {
 } from '@apollo/client'
 
 import PetList from './components/PetList'
+import PetForm from './components/PetForm/PetForm'
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
@@ -18,6 +19,7 @@ function App () {
       <div id="main">
         <h1>Pets</h1>
         <PetList />
+        <PetForm />
       </div>
     </ApolloProvider>
   )
