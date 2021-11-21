@@ -1,10 +1,10 @@
 import { useMutation } from '@apollo/client'
 import React, { useContext, useRef } from 'react'
 import { Context } from '../../Context'
-import { ADD_PET_MUTATION } from '../../queries/queries'
+import { ADD_PET_MUTATION, GET_PETS_QUERY } from '../../queries/queries'
 import Loading from '../Loading/Loading'
 import PetSelectControl from '../PetSelectControl/PetSelectControl'
-import './petform.style.css'
+import './addpet.style.css'
 
 function AddPet () {
   const [addPet, { loading, error, data }] = useMutation(ADD_PET_MUTATION)
@@ -21,7 +21,8 @@ function AddPet () {
         name: nameInputElem.current.value,
         genre: genreInputElem.current.value,
         ownerId: ownerId
-      }
+      },
+      refetchQueries: [{ query: GET_PETS_QUERY }]
     })
   }
 

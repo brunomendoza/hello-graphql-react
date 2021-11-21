@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-const getPetsQuery = gql`
+const GET_PETS_QUERY = gql`
 {
   pets {
     _id
@@ -9,7 +9,7 @@ const getPetsQuery = gql`
   }
 }
 `
-const getOwnersQuery = gql`
+const GET_OWNERS_QUERY = gql`
 {
   owners {
     _id
@@ -28,7 +28,7 @@ mutation AddPet($name: String!, $genre: String!, $ownerId: ID!) {
 `
 
 export {
-  getPetsQuery,
-  getOwnersQuery,
+  GET_PETS_QUERY,
+  GET_OWNERS_QUERY,
   ADD_PET_MUTATION
 }

@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { getOwnersQuery } from '../../queries/queries'
+import { GET_OWNERS_QUERY } from '../../queries/queries'
 import OwnerOptionControl from '../OwnerOptionControl/OwnerOptionControl'
 import Loading from '../Loading/Loading'
 import PropTypes from 'prop-types'
 import { Context } from '../../Context'
 
 function PetSelectControl ({ id, name }) {
-  const { loading, error, data } = useQuery(getOwnersQuery)
+  const { loading, error, data } = useQuery(GET_OWNERS_QUERY)
   const { setOwnerId } = useContext(Context)
 
   function handleOnChange (event) {

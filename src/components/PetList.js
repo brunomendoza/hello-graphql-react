@@ -4,15 +4,19 @@ import {
 } from '@apollo/client'
 
 import Loading from './Loading/Loading'
-import { getPetsQuery } from '../queries/queries'
+import { GET_PETS_QUERY } from '../queries/queries'
 
 function PetList () {
-  const { loading, error, data } = useQuery(getPetsQuery)
+  const { loading, error, data } = useQuery(GET_PETS_QUERY)
 
-  if (loading) return <Loading />
-  if (error) return <p>Error :(</p>
+  if (loading) {
+    return <Loading />
+  }
 
-  console.log(data.pets)
+  if (error) {
+    return <p>Error :(</p>
+  }
+
   return (
     <div>
       <ul id="pet-list">
