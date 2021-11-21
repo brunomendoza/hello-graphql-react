@@ -1,17 +1,28 @@
-import { useMutation, useQuery } from '@apollo/client'
-import React, { useRef } from 'react'
-import { getOwnersQuery } from '../../queries/queries'
+import { useMutation } from '@apollo/client'
+import React, { useContext, useRef } from 'react'
+import { Context } from '../../Context'
+import { ADD_PET_MUTATION } from '../../queries/queries'
 import Loading from '../Loading/Loading'
+import PetSelectControl from '../PetSelectControl/PetSelectControl'
 import './petform.style.css'
 
-function PetForm () {
-  const { loading, error, data } = useQuery(getOwnersQuery)
+function AddPet () {
+  const [addPet, { loading, error, data }] = useMutation(ADD_PET_MUTATION)
+  const { ownerId } = useContext(Context)
 
   const nameInputElem = useRef(null)
   const genreInputElem = useRef(null)
 
   function handleOnSubmit (event) {
-    useMutation()
+    event.preventDefault()
+
+    addPet({
+      variables: {
+        name: nameInputElem.current.value,
+        genre: genreInputElem.current.value,
+        ownerId: ownerId
+      }
+    })
   }
 
   if (loading) return <Loading />
@@ -39,10 +50,10 @@ function PetForm () {
         </div>
         <div className="control-group">
           <label htmlFor="owners">Owners</label>
-          <select id="owners" name="owners">
-            <option defaultValue>Select owner</option>
-            { data.owners.map(owner => <option key={ owner._id } value={ owner._id }>{ owner.firstName } { owner.lastName }</option>)}
-          </select>
+          <PetSelectControl
+            id="owners"
+            name="owners"
+          />
         </div>
       </fieldset>
       <button type="submit">+</button>
@@ -50,4 +61,4 @@ function PetForm () {
   )
 }
 
-export default PetForm
+export default AddPet

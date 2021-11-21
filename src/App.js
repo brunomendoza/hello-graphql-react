@@ -4,9 +4,10 @@ import {
   ApolloProvider,
   InMemoryCache
 } from '@apollo/client'
+import { ContextProvider } from './Context'
 
 import PetList from './components/PetList'
-import PetForm from './components/PetForm/PetForm'
+import AddPet from './components/AddPet/AddPet'
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
@@ -15,13 +16,15 @@ const client = new ApolloClient({
 
 function App () {
   return (
-    <ApolloProvider client={ client }>
-      <div id="main">
-        <h1>Pets</h1>
-        <PetList />
-        <PetForm />
-      </div>
-    </ApolloProvider>
+    <ContextProvider>
+      <ApolloProvider client={ client }>
+        <div id="main">
+          <h1>Pets</h1>
+          <PetList />
+          <AddPet />
+        </div>
+      </ApolloProvider>
+    </ContextProvider>
   )
 }
 
