@@ -1,9 +1,11 @@
 import React from 'react'
-import './style.css'
+import './loading.style.css'
 
 function Loading () {
   return (
-    <div className="loader">Loading</div>
+    <div className="wrapper">
+      <div className="loader">Loading</div>
+    </div>
   )
 }
 

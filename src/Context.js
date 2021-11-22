@@ -5,9 +5,10 @@ const Context = React.createContext()
 
 function ContextProvider ({ children }) {
   const [ownerId, setOwnerId] = useState()
+  const [isLoading, setIsLoading] = useState(false)
 
   return (
-    <Context.Provider value={{ ownerId, setOwnerId }}>
+    <Context.Provider value={{ ownerId, setOwnerId, isLoading, setIsLoading }}>
       { children }
     </Context.Provider>
   )

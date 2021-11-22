@@ -18,6 +18,22 @@ const GET_OWNERS_QUERY = gql`
   }
 }
 `
+const GET_PET_QUERY = gql`
+query GetPet ($petId: ID!){
+  pet(id: $petId) {
+    name
+    genre,
+    owner {
+      _id
+      firstName
+      lastName
+      pets {
+        name
+      }
+    }
+  }
+}
+`
 
 const ADD_PET_MUTATION = gql`
 mutation AddPet($name: String!, $genre: String!, $ownerId: ID!) {
@@ -30,5 +46,6 @@ mutation AddPet($name: String!, $genre: String!, $ownerId: ID!) {
 export {
   GET_PETS_QUERY,
   GET_OWNERS_QUERY,
-  ADD_PET_MUTATION
+  ADD_PET_MUTATION,
+  GET_PET_QUERY
 }
